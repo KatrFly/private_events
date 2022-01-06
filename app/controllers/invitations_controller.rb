@@ -4,8 +4,23 @@ class InvitationsController < ApplicationController
   end
 
   def new
-    @event = Event.find(params[:id])
-    @invitation = Invitation.new(user_id: current_user.id, event_id: @event_id)
+    @invitation = Invitation.new
+  end
+
+  def create
+    @event = Event.find(invitation_params[:event_id])
+    @invitation = Invitation.new(user_id:current_user.id, event_id: @event.id)
+    # @invitation = current_user.created_events.build(event_params)
+
+    respond_to do |format|
+      if @invitation.save
+        format.html { redirect_to event_url(@event), notice: "Invitation was successfully created." }
+        format.json { render :show, status: :created, location: @event }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
@@ -20,9 +35,6 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:)
-
-    def event_params
-      params.require(:event).permit(:name, :place, :date)
-    end
+    params.require(:invitation).permit(:event_id)
+  end
 end
