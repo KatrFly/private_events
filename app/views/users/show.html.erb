@@ -9,8 +9,14 @@
     <%= event.name %><br>
   <% end %>
 
-  <strong>Attending events:</strong>
-  <% @user.attended_events.each do |event| %>
+  <strong>Attending events:</strong><br>
+  <p>past events:</p>
+  <% @user.attended_events.past.each do |event| %>
+    <%= event.name %><br>
+  <% end %>
+  <br>
+  <p>future events:</p>
+  <% @user.attended_events.future.each do |event| %>
     <%= event.name %><br>
   <% end %>
 </p>
