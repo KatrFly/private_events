@@ -8,8 +8,8 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @event = Event.find(invitation_params[:event_id])
-    @invitation = Invitation.new(user_id:current_user.id, event_id: @event.id)
+    @event = Event.find(params[:event_id])
+    @invitation = Invitation.new(user_id:current_user.id, event_id:@event.id)
     # @invitation = current_user.created_events.build(event_params)
 
     respond_to do |format|

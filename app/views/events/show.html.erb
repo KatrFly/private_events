@@ -27,6 +27,6 @@
   <% end %>
 </p>
 
-<%= link_to 'Attend this event', new_invitation_path %>
+<%= link_to 'Attend this event', invitations_path(:event_id => @event.id), method: :post %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
