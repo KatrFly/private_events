@@ -4,8 +4,13 @@
   <strong>Username:</strong>
   <%= @user.username %><br>
 
-  <strong>Events:</strong>
+  <strong>Created events:</strong>
   <% @user.created_events.each do |event| %>
+    <%= event.name %><br>
+  <% end %>
+
+  <strong>Attending events:</strong>
+  <% @user.attended_events.each do |event| %>
     <%= event.name %><br>
   <% end %>
 </p>
