@@ -1,0 +1,27 @@
+a {
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.nav-header {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+
+  > a, div > a {
+    margin-right: 15px;
+    font-size: 1rem;
+
+    &:hover {
+      color: rgb(124, 124, 124);
+    }
+  }
+}

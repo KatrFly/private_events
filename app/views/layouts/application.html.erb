@@ -11,30 +11,28 @@
   </head>
 
   <body>
-
-    <div id="navbarExample" class="navbar-menu">
-      <div class="navbar-end">
-        <div class="field is-grouped">
-          <% if user_signed_in? %>
-            <p class="control">
-              <%= link_to current_user.username, edit_user_registration_path, class:"button is-info" %>
-            </p>
-            <p>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"button is-info" %>
-            </p>
-            <% else %>
-          <p class="control">
-            <%= link_to "Sign in", new_user_session_path, class: "button is-info" %>
-          </p>
-          <p class="control">
-            <%= link_to "Sign up", new_user_registration_path, class: "button is-info" %>
-          </p>
-          <% end %>
-        </div>
+    <div class="header">
+      <div class="logo">
+        <%= link_to "Private Events", root_path %>
       </div>
+        <nav class="nav-header">
+            <%= link_to "Home", root_path %>
+          <% if user_signed_in? %>
+            <%= link_to "Events", events_created_path %>
+            <%= link_to "Friends"%>
+          <% end %>
+          <div class="devise-links">
+            <% if user_signed_in? %>
+                <%= link_to current_user.username, edit_user_registration_path %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <% else %>
+              <%= link_to "Sign in", new_user_session_path %>
+              <%= link_to "Sign up", new_user_registration_path %>
+            <% end %>
+          </div>
+        </nav>
     </div>
 
-    
     <%= yield %>
   </body>
 </html>

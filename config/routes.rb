@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
+  get 'events/created', to: 'events#created'
+  get 'events/attending', to: 'events#attending'
   resources :events
   resources :users, :only => [:show]
   resources :invitations, :only => [:update, :create, :destroy]

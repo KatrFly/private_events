@@ -6,6 +6,14 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def created
+    @created_events = Event.where(creator_id: current_user.id)
+  end
+
+  def attending
+    @attending_events = Event.find_by_sql("SELECT * FROM events JOIN invitations ON event_id = events.id WHERE user_id = #{current_user.id}")
+  end
+
   # GET /events/1 or /events/1.json
   def show
     @event = Event.find(params[:id])
