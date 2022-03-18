@@ -25,3 +25,18 @@ a {
     }
   }
 }
+
+.page-body {
+  display: flex;
+  justify-content: space-around;
+}
+
+.side-bar {
+  border: lightgray solid 1px;
+  width: 20%;
+
+  > ul > li {
+    list-style-type: none;
+    margin: 10px 0;
+  }
+}

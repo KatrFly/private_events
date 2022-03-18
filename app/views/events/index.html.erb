@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<div class="index-body">
   <div class="main-field">
     <div class="future events-block">
       <h1>Upcoming Events</h1>
@@ -58,17 +57,6 @@
       <% end %>
     </div>
   </div>
-  
-  <nav class="side-bar">
-    <div>
-      <% if user_signed_in? %>
-        <%= link_to 'New Event', new_event_path %>
-        <%= link_to 'Created events', events_created_path %>
-        <%= link_to 'Attending events', events_attending_path %>
-      <% end %>
-    </div>
-  </nav>
-</div>
 
 
 

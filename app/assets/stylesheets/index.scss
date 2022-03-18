@@ -1,9 +1,11 @@
+.main-field {
+  width: 70%;
+}
+
 .events-block {
   &.past {
     margin-bottom: 20px;
   }
-
-  width: 70%
 }
 
 .one-event {
@@ -39,16 +41,5 @@
   flex-direction: column;
   grid-row: 1 / -1;
   grid-column: 4 / 5;
-}
-
-.side-bar {
-  border: lightgray solid 1px;
-  display: flex;
-  flex-direction: column;
-}
-
-.index-body {
-  display: flex;
-  
 }
 

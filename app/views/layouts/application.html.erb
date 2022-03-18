@@ -33,6 +33,18 @@
         </nav>
     </div>
 
-    <%= yield %>
+    <div class="page-body">
+      <%= yield %>
+
+      <nav class="side-bar">
+        <% if user_signed_in? %>
+          <ul>
+            <li><%= link_to 'New Event', new_event_path %></li>
+            <li><%= link_to 'Created events', events_created_path %></li>
+            <li><%= link_to 'Attending events', events_attending_path %></li>
+          </ul>
+        <% end %>
+      </nav>
+    </div>
   </body>
 </html>
