@@ -1,0 +1,12 @@
+<h1>Friend Requests</h1>
+
+<% @received_friend_requests.each do |request| %>
+  <%= request.inviter.username%>
+  <%= link_to 'Accept' %>
+  <%= link_to 'Decline' %><br>
+<% end %>
+
+<% @sent_friend_requests.each do |request| %>
+  <%= request.inviter.username%>
+  <%= link_to 'Withdraw request' %><br>
+<% end %>

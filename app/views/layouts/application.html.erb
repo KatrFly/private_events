@@ -18,12 +18,18 @@
         <nav class="nav-header">
             <%= link_to "Home", root_path %>
           <% if user_signed_in? %>
-            <%= link_to "Events", events_created_path %>
-            <%= link_to "Friends"%>
+            <%= link_to "Friends", friendships_path %>
           <% end %>
           <div class="devise-links">
             <% if user_signed_in? %>
-                <%= link_to current_user.username, edit_user_registration_path %>
+                <div class="dropdown">
+                  <%= link_to current_user.username, edit_user_registration_path %>
+                  <div class="dropdown-content">
+                    <%= link_to "Profile", user_path(current_user) %>
+                    <%= link_to "Edit", edit_user_registration_path %>
+                    <%= link_to "Sign off", user_registration_path, method: :delete %>
+                  </div>
+                </div>
                 <%= link_to "Logout", destroy_user_session_path, method: :delete %>
               <% else %>
               <%= link_to "Sign in", new_user_session_path %>
@@ -34,7 +40,12 @@
     </div>
 
     <div class="page-body">
-      <%= yield %>
+
+      <div class="main-field">
+        <p id="notice"><%= notice %></p>
+        <p id="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
 
       <nav class="side-bar">
         <% if user_signed_in? %>
@@ -42,6 +53,7 @@
             <li><%= link_to 'New Event', new_event_path %></li>
             <li><%= link_to 'Created events', events_created_path %></li>
             <li><%= link_to 'Attending events', events_attending_path %></li>
+            <li><%= link_to 'Friend Requests', friend_requests_path %></li>
           </ul>
         <% end %>
       </nav>

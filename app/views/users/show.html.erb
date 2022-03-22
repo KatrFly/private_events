@@ -1,27 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="main-field">
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %><br>
+  <h1><%= @user.username %></h1>
 
-  <strong>Created events:</strong>
-  <% @user.created_events.each do |event| %>
-    <%= event.name %><br>
-  <% end %>
+    <p class="logistics">
+      <strong>Created events:</strong><br>
+      <% @user.created_events.each do |event| %>
+        <%= link_to event.name, event_path(event) %><br>
+      <% end %>
+    </p>
+  
+    <strong>Attending events:</strong><br>
+    <p class="logistics">
+      <strong>Past events:</strong><br>
+      <% @user.attended_events.past.each do |event| %>
+        <%= link_to event.name, event_path(event) %><br>
+      <% end %>
+    </p>
 
-  <strong>Attending events:</strong><br>
-  <p>past events:</p>
-  <% @user.attended_events.past.each do |event| %>
-    <%= event.name %><br>
-  <% end %>
-  <br>
-  <p>future events:</p>
-  <% @user.attended_events.future.each do |event| %>
-    <%= event.name %><br>
-  <% end %>
-</p>
-
-<%= link_to 'Home', root_path %>
+    <p class="logistics">
+      <strong>Future events:</strong><br>
+      <% @user.attended_events.future.each do |event| %>
+        <%= link_to event.name, event_path(event) %><br>
+      <% end %>
+    </p>
+  
+  <%= link_to 'Home', root_path %>
+</div>
 
 
 

@@ -1,62 +1,58 @@
-<p id="notice"><%= notice %></p>
+<div class="future events-block">
+  <h1>Upcoming Events</h1>
 
-  <div class="main-field">
-    <div class="future events-block">
-      <h1>Upcoming Events</h1>
-  
-      <% @events.future.each do |event| %>
-        <div class="one-event">
-          <div class="name"><%= link_to event.name, event_path(event) %></div>
-          <div class="place logistics"><%= event.place %></div>
-          <div class="date logistics"><%= event.date %></div>
-          <div class="creator">Organised by <%= event.creator.username %></div>
-          <% if user_signed_in? %>
-            <div class="friends-attending">
-              Leni, Emma and 5 other friends are attending this event
-            </div>
-            <% if event.creator_id == current_user.id %>
-              <div class="event-controls">
-                <%= link_to 'Attend this event', invitations_path(:event_id => event.id), method: :post %>
-                <%= link_to "Edit", edit_event_path(event) %>
-                <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            <% end %>
-          <% end %>
-          <div class="description">This is a bit of text that should serve as a placeholder until I have actually added the description table in the database column.</div>
+  <% @events.future.each do |event| %>
+    <div class="one-event">
+      <div class="name"><%= link_to event.name, event_path(event) %></div>
+      <div class="place logistics"><%= event.place %></div>
+      <div class="date logistics"><%= event.date %></div>
+      <div class="creator">Organised by <%= link_to event.creator.username, user_path(event.creator) %></div>
+      <% if user_signed_in? %>
+        <div class="friends-attending">
+          Leni, Emma and 5 other friends are attending this event
         </div>
-      <% end %>
-    </div>
-  
-    <br>
-    <br>
-    <br>
-  
-    <div class="past events-block">
-      <h1>Past Events</h1>
-  
-      <% @events.past.each do |event| %>
-        <div class="one-event">
-          <div class="name"><%= link_to event.name, event_path(event) %></div>
-          <div class="place logistics"><%= event.place %></div>
-          <div class="date logistics"><%= event.date %></div>
-          <div class="creator">Organised by <%= event.creator.username %></div>
-          <% if user_signed_in? %>
-          <div class="friends-attending">
-            Leni, Emma and 5 other friends are attending this event
+        <% if event.creator_id == current_user.id %>
+          <div class="event-controls">
+            <%= link_to 'Attend this event', invitations_path(:event_id => event.id), method: :post %>
+            <%= link_to "Edit", edit_event_path(event) %>
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
-            <% if event.creator_id == current_user.id %>
-              <div class="event-controls">
-                <%= link_to 'Attend this event', invitations_path(:event_id => event.id), method: :post %>
-                <%= link_to "Edit", edit_event_path(event) %>
-                <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            <% end %>
-          <% end %>
-          <div class="description">This is a bit of text that should serve as a placeholder until I have actually added the description table in the database column.</div>
-        </div>
+        <% end %>
       <% end %>
+      <div class="description">This is a bit of text that should serve as a placeholder until I have actually added the description table in the database column.</div>
     </div>
-  </div>
+  <% end %>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="past events-block">
+  <h1>Past Events</h1>
+
+  <% @events.past.each do |event| %>
+    <div class="one-event">
+      <div class="name"><%= link_to event.name, event_path(event) %></div>
+      <div class="place logistics"><%= event.place %></div>
+      <div class="date logistics"><%= event.date %></div>
+      <div class="creator">Organised by <%= link_to event.creator.username, user_path(event.creator) %></div>
+      <% if user_signed_in? %>
+      <div class="friends-attending">
+        Leni, Emma and 5 other friends are attending this event
+      </div>
+        <% if event.creator_id == current_user.id %>
+          <div class="event-controls">
+            <%= link_to 'Attend this event', invitations_path(:event_id => event.id), method: :post %>
+            <%= link_to "Edit", edit_event_path(event) %>
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="description">This is a bit of text that should serve as a placeholder until I have actually added the description table in the database column.</div>
+    </div>
+  <% end %>
+</div>
 
 
 

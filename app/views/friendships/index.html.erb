@@ -1,0 +1,16 @@
+<div class="main-field">
+  <h1>Your friends</h1>
+
+  <% @friends.each do |friend| %>
+    <%= link_to friend.username, user_path(friend) %><br>
+  <% end %><br><br><br>
+
+
+  <h1>Find more friends</h1>
+  <% @users.each do |user| %>
+    <%= link_to user.username, user_path(user) %> 
+    <% unless current_user.friend_request_send?(user.id, current_user)%>
+      <%= link_to "Send a request", friend_requests_path(invitee_id: user.id), method: :post %>
+    <% end %><br>
+  <% end %>
+</div>

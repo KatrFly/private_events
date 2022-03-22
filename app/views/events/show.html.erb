@@ -1,29 +1,24 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @event.name %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
+<p class="logistics">
+  <strong>Place</strong><br>
+  <%= link_to @event.place %>
 </p>
 
-<p>
-  <strong>Place:</strong>
-  <%= @event.place %>
+<p class="logistics">
+  <strong>Date</strong><br>
+  <%= link_to @event.date %>
 </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
+<p class="logistics">
+  <strong>Organised by</strong><br>
+  <%= link_to @event.creator.username, user_path(@event.creator) %>
 </p>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @event.creator.username %>
-</p>
-
-<p>
-  <strong>Attendees:</strong>
+<p class="logistics">
+  <strong>Attendees</strong><br>
   <% @event.attendees.each do |attendee| %>
-    <%= attendee.username %><br>
+    <%= link_to attendee.username, user_path(attendee) %><br>
   <% end %>
 </p>
 
