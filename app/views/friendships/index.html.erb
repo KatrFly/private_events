@@ -3,6 +3,7 @@
 
   <% @friends.each do |friend| %>
     <%= link_to friend.username, user_path(friend) %><br>
+    <%= button_to "End friendship"%>
   <% end %><br><br><br>
 
 

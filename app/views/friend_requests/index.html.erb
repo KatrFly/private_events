@@ -1,12 +1,21 @@
 <h1>Friend Requests</h1>
 
-<% @received_friend_requests.each do |request| %>
-  <%= request.inviter.username%>
-  <%= link_to 'Accept' %>
-  <%= link_to 'Decline' %><br>
+<% if @received_friend_requests.nil? %>
+  <%= "You don't have any friend requests at this moment" %>
+<% else %>
+  <% @received_friend_requests.each do |request| %>
+    <%= request.inviter.username%>
+    <%= button_to 'Accept', friendships_path(friend_request: request.id) %>
+    <%= link_to 'Decline' %><br>
+  <% end %>
 <% end %>
 
+
+<% if @received_friend_requests.nil? %>
+  <%= "You don't have any friend requests at this moment" %>
+<% else %>
 <% @sent_friend_requests.each do |request| %>
   <%= request.inviter.username%>
   <%= link_to 'Withdraw request' %><br>
+  <% end %>
 <% end %>
