@@ -1,7 +1,8 @@
 <h1>Friend Requests</h1>
 
-<% if @received_friend_requests.nil? %>
-  <%= "You don't have any friend requests at this moment" %>
+<p>Received friend requests: </p>
+<% if @received_friend_requests.empty? %>
+  <%= "You don't have any received friend requests at this moment" %>
 <% else %>
   <% @received_friend_requests.each do |request| %>
     <%= request.inviter.username%>
@@ -11,8 +12,9 @@
 <% end %>
 
 
-<% if @received_friend_requests.nil? %>
-  <%= "You don't have any friend requests at this moment" %>
+<p>Pending friend requests: </p>
+<% if @received_friend_requests.empty? %>
+  <%= "You don't have any pending friend requests at this moment" %>
 <% else %>
 <% @sent_friend_requests.each do |request| %>
   <%= request.inviter.username%>

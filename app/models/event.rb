@@ -5,4 +5,6 @@ class Event < ApplicationRecord
 
   scope :past, -> { where("date < ?", Date.current) }
   scope :future, -> { where("date >= ?", Date.current) }
+
+  enum visibility: { only_invited: "only_invited", only_friends: "only_friends" , public_event: "public_event" }
 end
