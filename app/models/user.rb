@@ -14,13 +14,11 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
-  def friends_include_user?(current_user, friend_id)
-    friend_ids = []
+  def friends
+    @friendships = Friendship.joins(:user)
 
-    current_user.all_friends.each do |f|
-      friend_ids << f.id
-    end
-    return true if friend_ids.include?(friend_id) 
+    # this gathers all friends by combining the ones where the current_user is in the user-column and the friend is in the friend-column and visa versa.
+    @friendships.map { |f| f.friend == self ? f.user : f.friend }
   end
 
   def friend_request_send?(user_id, current_user)
@@ -29,9 +27,8 @@ class User < ApplicationRecord
     return false if @requests.empty?
 
     @requests.map do |request|
-      return true if request.inviter_id == user_id && request.invitee_id == current_user.id
-      return true if request.invitee_id == user_id && request.inviter_id == current_user.id
-      return false
+      return request if request.inviter_id == user_id && request.invitee_id == current_user.id
+      return request if request.invitee_id == user_id && request.inviter_id == current_user.id
     end
   end 
 end

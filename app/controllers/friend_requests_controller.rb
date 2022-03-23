@@ -8,7 +8,8 @@ class FriendRequestsController < ApplicationController
     @request = FriendRequest.new(inviter_id: current_user.id, invitee_id: @invitee.id)
     @request.save
     @users = User.all
-    @friends = User.all
+    @friends = current_user.friends
+    current_user.sent_friend_requests.reload
     render "friendships/index"
   end
 
@@ -18,8 +19,12 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
-    @friend_request = FriendRequest.find_by(inviter_id: current_user.id, invitee_id: @invitee.id)
+    @friend_request = FriendRequest.find(params[:id])
     @friend_request.destroy
+    current_user.sent_friend_requests.reload
+    @friends = current_user.friends
+    @users = User.all
+    render "friendships/index"
   end
 
   private

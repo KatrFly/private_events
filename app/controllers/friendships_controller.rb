@@ -9,8 +9,7 @@ class FriendshipsController < ApplicationController
   end
 
   def index
-    @friends = User.find_by_sql("SELECT * FROM users JOIN friendships s ON users.id = s.user_id JOIN friendships f ON f.friend_id = users.id")
-    @friends = User.all
+    @friends = current_user.friends
     @users = User.all
   end
 
