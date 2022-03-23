@@ -10,16 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_190832) do
+ActiveRecord::Schema.define(version: 2022_03_22_224638) do
 
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.string "place"
-    t.date "date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "creator_id"
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+# Could not dump table "events" because of following StandardError
+#   Unknown type 'visibility_status' for column 'visibility'
 
   create_table "friend_requests", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
