@@ -5,8 +5,8 @@ class FriendRequestsController < ApplicationController
 
   def create
     @invitee = User.find(request_params[:invitee_id])
-    @request = FriendRequest.new(inviter_id: current_user.id, invitee_id: @invitee.id)
-    @request.save
+    @request = FriendRequest.create(inviter_id: current_user.id, invitee_id: @invitee.id)
+
     @users = User.all
     @friends = current_user.friends
     current_user.sent_friend_requests.reload

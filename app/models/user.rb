@@ -24,11 +24,12 @@ class User < ApplicationRecord
   def friend_request_send?(user_id, current_user)
     @requests = FriendRequest.all 
 
-    return false if @requests.empty?
+    return nil if @requests.empty?
 
     @requests.map do |request|
       return request if request.inviter_id == user_id && request.invitee_id == current_user.id
       return request if request.invitee_id == user_id && request.inviter_id == current_user.id
+      return nil
     end
   end 
 end

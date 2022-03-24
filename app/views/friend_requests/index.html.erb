@@ -6,14 +6,14 @@
 <% else %>
   <% @received_friend_requests.each do |request| %>
     <%= request.inviter.username%>
-    <%= button_to 'Accept', friendships_path(friend_request: request.id) %>
+    <%= button_to 'Accept', friendships_path(friend_request: request.id), method: :post %>
     <%= link_to 'Decline' %><br>
   <% end %>
 <% end %>
 
 
 <p>Pending friend requests: </p>
-<% if @received_friend_requests.empty? %>
+<% if @sent_friend_requests.empty? %>
   <%= "You don't have any pending friend requests at this moment" %>
 <% else %>
 <% @sent_friend_requests.each do |request| %>

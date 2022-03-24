@@ -3,13 +3,14 @@
 
   <% @friends.each do |friend| %>
     <%= link_to friend.username, user_path(friend) %><br>
+    <%= button_to "End friendship", friendship_path, method: :delete %>
   <% end %><br><br><br>
 
 
   <h1>Find more friends</h1>
   <% @users.each do |user| %>
+  <% unless user == current_user || current_user.friends.include?(user) %>
     <%= link_to user.username, user_path(user) %> 
-    <% unless current_user.friends.include?(user)%>
       <% if request = current_user.friend_request_send?(user.id, current_user) %>
         <%= button_to "Withdraw request", friend_request_path(request), method: :delete %>
       <% else %>
