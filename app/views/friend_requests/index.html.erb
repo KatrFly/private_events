@@ -6,7 +6,7 @@
 <% else %>
   <% @received_friend_requests.each do |request| %>
     <%= request.inviter.username%>
-    <%= button_to 'Accept', friendships_path(friend_request: request.id), method: :post %>
+    <%= button_to 'Accept', friendships_path(friend_request: request), method: :post %>
     <%= link_to 'Decline' %><br>
   <% end %>
 <% end %>

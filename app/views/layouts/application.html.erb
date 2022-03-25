@@ -55,6 +55,8 @@
             <li><%= link_to 'Attending events', events_attending_path %></li>
             <li><%= link_to 'Friend Requests', friend_requests_path %></li>
           </ul>
+          <% else %>
+            <p>Log in to create or attend events or to add friends and send them invitations.</p>
         <% end %>
       </nav>
     </div>
