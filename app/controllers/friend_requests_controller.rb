@@ -1,4 +1,6 @@
 class FriendRequestsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @request = FriendRequest.new
   end

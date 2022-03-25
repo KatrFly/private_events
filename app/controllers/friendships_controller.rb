@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @friend_request = FriendRequest.find(friendship_params[:friend_request])
     if Friendship.create(user_id: @friend_request.inviter_id, friend_id: current_user.id)

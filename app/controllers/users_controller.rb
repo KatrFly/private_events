@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: %i[new, create]
+
   def show
-    if user_signed_in?
-      @user = User.find(params[:id])
-    else
-      render "login_required"
-    end
+    @user = User.find(params[:id])
   end
 
   def index
