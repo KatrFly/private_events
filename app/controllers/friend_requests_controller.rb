@@ -1,18 +1,12 @@
 class FriendRequestsController < ApplicationController
   before_action :authenticate_user!
-  
-  def new
-    @request = FriendRequest.new
-  end
 
   def create
     @invitee = User.find(request_params[:invitee_id])
     @request = FriendRequest.create(inviter_id: current_user.id, invitee_id: @invitee.id)
 
-    @users = User.all
-    @friends = current_user.friends
     current_user.sent_friend_requests.reload
-    render "friendships/index"
+    redirect_to "/friendships"
   end
 
   def index
@@ -24,9 +18,8 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.find(params[:id])
     @friend_request.destroy
     current_user.sent_friend_requests.reload
-    @friends = current_user.friends
-    @users = User.all
-    render "friendships/index"
+
+    redirect_to "/friendships"
   end
 
   private

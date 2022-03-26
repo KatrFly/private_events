@@ -7,7 +7,7 @@
   <% @received_friend_requests.each do |request| %>
     <%= request.inviter.username%>
     <%= button_to 'Accept', friendships_path(friend_request: request), method: :post %>
-    <%= link_to 'Decline' %><br>
+    <%= button_to 'Decline', friend_request_path(request), method: :delete %>
   <% end %>
 <% end %>
 

@@ -1,20 +1,32 @@
 <div class="main-field">
   <h1>Your friends</h1>
 
-  <% @friends.each do |friend| %>
-    <%= link_to friend.username, user_path(friend) %><br>
-  <% end %><br><br><br>
+  <% p @friendships %>
+
+  <% if @friendships.empty? %>
+    <p>You don't have any friends yet, send out some requests! </p>
+  <% else %>
+    <% @friendships.each do |fs| %>
+      <%= link_to fs.get_the_users_friend(current_user).username, user_path(fs.get_the_users_friend(current_user)) %>
+      <%= button_to "End friendship", friendship_path(fs), method: :delete %>
+    <% end %>
+  <% end %>
 
 
   <h1>Find more friends</h1>
   <% @users.each do |user| %>
-  <% unless user == current_user || current_user.friends.include?(user) %>
-    <%= link_to user.username, user_path(user) %> 
-      <% if request = current_user.friend_request_send?(user.id) %>
-        <%= button_to "Withdraw request", friend_request_path(request), method: :delete %>
-      <% else %>
+    <% unless user == current_user || current_user.friends.include?(user) %>
+      <%= link_to user.username, user_path(user) %> 
+        <% if request = current_user.friend_request_send?(user.id) %>
+          <% if current_user.sent_friend_requests.include?(request) %>
+            <%= button_to "Withdraw request", friend_request_path(request), method: :delete %>
+          <% elsif current_user.received_friend_requests.include?(request) %>
+            <%= button_to "Accept request", friendships_path(friend_request: request), method: :post %>
+            <%= button_to 'Decline request', friend_request_path(request), method: :delete %>
+          <% end %>
+       <% else %>
         <%= button_to "Send a request", friend_requests_path(invitee_id: user.id), method: :post %>
-      <% end %>
+       <% end %>
     <% end %><br>
-  <% end %>
+  <% end %> 
 </div>
