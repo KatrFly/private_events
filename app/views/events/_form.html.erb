@@ -26,6 +26,10 @@
     <%= form.date_select :date %>
   </div>
 
+  <div class="field">
+    <%= form.select :visibility, Event.visibilities.map { |k, v| [k.humanize, k]} %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

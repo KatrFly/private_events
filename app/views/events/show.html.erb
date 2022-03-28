@@ -22,6 +22,8 @@
   <% end %>
 </p>
 
-<%= link_to 'Attend this event', invitations_path(:event_id => @event.id), method: :post %>
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if @event.public_event? || (@event.only_friends? && @event.creator.friends.include?(current_user)) %>
+  <%= link_to 'Attend this event', invitations_path(:event_id => @event.id), method: :post %>
+<% end %>
+<%= link_to 'Edit', edit_event_path(@event) %>
 <%= link_to 'Back', events_path %>

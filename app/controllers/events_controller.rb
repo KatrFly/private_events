@@ -23,10 +23,12 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = current_user.created_events.build
+    @visibility_options = [ ["Only invited persons", 1], ["Only friends", 2], ["Public event", 3] ]
   end
 
   # GET /events/1/edit
   def edit
+    @visibility_options = [ ["Only invited persons", 1], ["Only friends", 2], ["Public event", 3] ]
   end
 
   # POST /events or /events.json
@@ -75,6 +77,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :place, :date)
+      params.require(:event).permit(:name, :place, :date, :visibility)
     end
 end
