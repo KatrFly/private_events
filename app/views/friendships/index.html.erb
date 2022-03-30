@@ -18,12 +18,14 @@
     <% unless user == current_user || current_user.friends.include?(user) %>
       <%= link_to user.username, user_path(user) %> 
         <% if request = current_user.friend_request_send?(user.id) %>
+
           <% if current_user.sent_friend_requests.include?(request) %>
-            <%= button_to "Withdraw request", friend_request_path(request), method: :delete %>
+            <%= button_to "Withdraw request", request, method: :delete %>
           <% elsif current_user.received_friend_requests.include?(request) %>
             <%= button_to "Accept request", friendships_path(friend_request: request), method: :post %>
             <%= button_to 'Decline request', friend_request_path(request), method: :delete %>
           <% end %>
+          
        <% else %>
         <%= button_to "Send a request", friend_requests_path(invitee_id: user.id), method: :post %>
        <% end %>

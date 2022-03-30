@@ -11,13 +11,17 @@
         <div class="friends-attending">
           Leni, Emma and 5 other friends are attending this event
         </div>
-        <% if event.creator_id == current_user.id %>
-          <div class="event-controls">
-            <%= link_to 'Attend this event', invitations_path(:event_id => event.id), method: :post %>
+        <div class="event-controls">
+          <% if attendance = current_user.already_attending?(event) %>
+            <%= button_to 'Unattend this event', attendance_path(attendance), method: :delete %>
+          <% else %>
+            <%= button_to 'Attend this event', attendances_path(:event_id => event.id), method: :post %>
+          <% end %>
+          <% if event.creator_id == current_user.id %>
             <%= link_to "Edit", edit_event_path(event) %>
-            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
-        <% end %>
+            <%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </div>
       <% end %>
       <div class="description">This is a bit of text that should serve as a placeholder until I have actually added the description table in the database column.</div>
     </div>
@@ -41,13 +45,13 @@
       <div class="friends-attending">
         Leni, Emma and 5 other friends are attending this event
       </div>
+      <div class="event-controls">
+        <%= button_to 'Attend this event', attendances_path(:event_id => event.id), method: :post %>
         <% if event.creator_id == current_user.id %>
-          <div class="event-controls">
-            <%= link_to 'Attend this event', invitations_path(:event_id => event.id), method: :post %>
-            <%= link_to "Edit", edit_event_path(event) %>
-            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
+          <%= link_to "Edit", edit_event_path(event) %>
+          <%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
+      </div>
       <% end %>
       <div class="description">This is a bit of text that should serve as a placeholder until I have actually added the description table in the database column.</div>
     </div>

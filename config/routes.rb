@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :friendships, :only => [:index, :create, :destroy]
   resources :friend_requests, :only => [:create, :index, :destroy]
   resources :users, :only => [:show]
-  resources :invitations, :only => [:update, :create, :destroy]
+  resources :invitations, :except => [:show]
   resources :attendances, :only => [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "events#index"

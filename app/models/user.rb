@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
   has_many :invitations
+  has_many :events_invited_to, through: :invitations, source: :event
   has_many :attendances
   has_many :attended_events, through: :attendances, source: :event
 
@@ -46,5 +47,13 @@ class User < ApplicationRecord
       return request if request.invitee_id == user_id && request.inviter_id == self.id
       return nil
     end
-  end 
+  end
+
+  def already_attending?(event)
+    if self.attended_events.include?(event)
+      return Attendance.find_by(event_id: event.id, user_id: self.id)
+    else
+      nil
+    end
+  end
 end

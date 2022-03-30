@@ -1,0 +1,28 @@
+<h1>Private events you are invitated to attend:</h1>
+
+<% @invitations.each do |i| %>
+  <div class="one-event">
+    <div class="name"><%= link_to i.event.name, event_path(i.event) %></div>
+    <div class="place logistics"><%= i.event.place %></div>
+    <div class="date logistics"><%= i.event.date %></div>
+    <div class="creator">Organised by <%= link_to i.event.creator.username, user_path(i.event.creator) %></div>
+    <% if user_signed_in? %>
+      <div class="friends-attending">
+        Leni, Emma and 5 other friends are attending this event
+      </div>
+      <div class="event-controls">
+        <% if i.open?%>
+          <%= button_to "Accept invitation", invitation_path(i, invitation: { invitation_status: 'accepted' }), method: :patch %>
+          <%= button_to "Decline invitation", invitation_path(i, invitation: { invitation_status: 'declined' }), method: :patch %>
+          <% elsif i.declined? %>
+            <p>You have declined this invitation. Change your mind?</p>
+            <%= button_to "Accept invitation", invitation_path(i, invitation: { invitation_status: 'accepted' }), method: :patch %>
+          <% elsif i.accepted? %>
+            <p>You have accepted this invitation. Change your mind?</p>
+            <%= button_to "Decline invitation", invitation_path(i, invitation: { invitation_status: 'declined' }), method: :patch %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="description">This is a bit of text that should serve as a placeholder until I have actually added the description table in the database column.</div>
+  </div>
+<% end %>

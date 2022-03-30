@@ -18,6 +18,6 @@
 <% else %>
 <% @sent_friend_requests.each do |request| %>
   <%= request.inviter.username%>
-  <%= link_to 'Withdraw request' %><br>
+  <%= button_to 'Withdraw request', request, method: :delete %><br>
   <% end %>
 <% end %>

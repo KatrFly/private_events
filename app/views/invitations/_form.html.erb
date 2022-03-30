@@ -11,16 +11,15 @@
     </div>
   <% end %>
 
-   <div class="field">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
-  </div>
+  <%= form.hidden_field :event_id, value: @event.id %>
 
   <div class="field">
-    <p>If you click the button below, a new invitation will be made for you to attend this event. You will be added 
-    to the list of attendees </p>
+    <% current_user.friends.each do |friend| %>
+      <%= check_box_tag "invitation[invited_users_ids][]", friend.id, @event.invited_guests.include?(friend.id) %>
+      <%= label_tag(:invited_persons, "#{friend.username}") %>
+    <% end %>
   </div>
-
+ 
   <div class="actions">
     <%= form.submit %>
   </div>

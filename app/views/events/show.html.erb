@@ -25,5 +25,13 @@
 <% if @event.public_event? || (@event.only_friends? && @event.creator.friends.include?(current_user)) %>
   <%= button_to 'Attend this event', attendances_path(:event_id => @event.id), method: :post %>
 <% end %>
-<%= link_to 'Edit', edit_event_path(@event) %>
+
+<% if @event.creator == current_user && @event.only_invited? %>
+  <%= link_to 'Invite people',  new_invitation_path(event_id: @event) %>
+<% end %>
+
+<% if @event.creator == current_user %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+<% end %>
+
 <%= link_to 'Back', events_path %>

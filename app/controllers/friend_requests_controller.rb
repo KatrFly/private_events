@@ -19,7 +19,10 @@ class FriendRequestsController < ApplicationController
     @friend_request.destroy
     current_user.sent_friend_requests.reload
 
-    redirect_to "/friendships"
+    respond_to do |format|
+      format.html { redirect_to friendships_url, notice: "Friend request was successfully withdrawn." }
+      format.json { head :no_content }
+    end
   end
 
   private

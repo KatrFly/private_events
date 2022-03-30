@@ -10,6 +10,17 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: invitation_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.invitation_status AS ENUM (
+    'open',
+    'accepted',
+    'declined'
+);
+
+
+--
 -- Name: visibility_status; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -177,7 +188,7 @@ CREATE TABLE public.invitations (
     user_id integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    accepted boolean DEFAULT true
+    invitation_status public.invitation_status
 );
 
 
@@ -485,6 +496,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220322190832'),
 ('20220323132334'),
 ('20220326210950'),
-('20220326213546');
+('20220326213546'),
+('20220330204034'),
+('20220330204712');
 
 

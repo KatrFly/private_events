@@ -19,7 +19,11 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    redirect_to "/friend_requests"
+    
+     respond_to do |format|
+      format.html { redirect_to friend_requests_url, notice: "Event was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
