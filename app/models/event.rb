@@ -27,13 +27,9 @@ class Event < ApplicationRecord
     else 
       name_2 = @attending_friends.first.username
       name_1 = @attending_friends.second.username
-      number = @attending_friends.length
+      number = @attending_friends.length - 2 
       return "#{name_1}, #{name_2} and #{number} friends are attending this party"
     end
-
-    # als de array leeg is -> een zin
-    # als de array lengte 1 heeft -> eerste username en een zin
-    # als de array langer is -> eerste twee usernames en lengte -2 en een zin
   end
 
   def get_sentence

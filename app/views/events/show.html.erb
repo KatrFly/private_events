@@ -2,12 +2,12 @@
 
 <p class="logistics">
   <strong>Place</strong><br>
-  <%= link_to @event.place %>
+  <%= @event.place %>
 </p>
 
 <p class="logistics">
   <strong>Date</strong><br>
-  <%= link_to @event.date %>
+  <%= @event.date %>
 </p>
 
 <p class="logistics">
@@ -20,6 +20,11 @@
   <% @event.attendees.each do |attendee| %>
     <%= link_to attendee.username, user_path(attendee) %><br>
   <% end %>
+</p>
+
+<p class="logistics">
+  <strong>Description</strong>
+  <%= @event.description %>
 </p>
 
 <% if @event.public_event? || (@event.only_friends? && @event.creator.friends.include?(current_user)) %>
