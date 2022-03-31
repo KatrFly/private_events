@@ -9,7 +9,7 @@
       <div class="creator">Organised by <%= link_to event.creator.username, user_path(event.creator) %></div>
       <% if user_signed_in? %>
         <div class="friends-attending">
-          Leni, Emma and 5 other friends are attending this event
+          <%= event.get_attending_friends(current_user)%>
         </div>
         <div class="event-controls">
           <% if attendance = current_user.already_attending?(event) %>
