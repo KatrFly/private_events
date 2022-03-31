@@ -56,4 +56,10 @@ class User < ApplicationRecord
       nil
     end
   end
+
+  def find_invitation(event)
+    invitation = self.invitations.find_by(event_id: event.id)
+
+    return invitation
+  end
 end
