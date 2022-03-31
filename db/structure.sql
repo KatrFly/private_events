@@ -91,7 +91,8 @@ CREATE TABLE public.events (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     creator_id integer,
-    visibility public.visibility_status
+    visibility public.visibility_status,
+    description text
 );
 
 
@@ -498,6 +499,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220326210950'),
 ('20220326213546'),
 ('20220330204034'),
-('20220330204712');
+('20220330204712'),
+('20220331082846');
 
 
