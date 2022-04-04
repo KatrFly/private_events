@@ -31,8 +31,4 @@ class Event < ApplicationRecord
       return "#{name_1}, #{name_2} and #{number} friends are attending this party"
     end
   end
-
-  def get_sentence
-  end
-
 end

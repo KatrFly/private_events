@@ -37,18 +37,6 @@ class User < ApplicationRecord
     end
   end 
 
-  def friend_request_received?(user_id)
-    @requests = FriendRequest.all 
-
-    return nil if @requests.empty?
-
-    @requests.map do |request|
-      return request if request.inviter_id == user_id && request.invitee_id == self.id
-      return request if request.invitee_id == user_id && request.inviter_id == self.id
-      return nil
-    end
-  end
-
   def already_attending?(event)
     if self.attended_events.include?(event)
       return Attendance.find_by(event_id: event.id, user_id: self.id)
