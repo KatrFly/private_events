@@ -26,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def friend_request_send?(user_id)
-    @requests = FriendRequest.all 
+    @requests = FriendRequest.all
 
     return nil if @requests.empty?
 
@@ -35,7 +35,7 @@ class User < ApplicationRecord
       return request if request.invitee_id == user_id && request.inviter_id == self.id
       return nil
     end
-  end 
+  end
 
   def already_attending?(event)
     if self.attended_events.include?(event)
