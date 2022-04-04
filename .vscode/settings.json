@@ -1,0 +1,6 @@
+{
+  "editor.renderWhitespace": "all",
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": true,
+  "files.trimTrailingWhitespace": true
+}
