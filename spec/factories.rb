@@ -19,4 +19,13 @@ FactoryBot.define do
   factory (:attendance) do
 
   end
+
+  factory(:friendship) do
+
+  end
+
+  factory(:invitation) do
+    event
+    user
+  end
 end
