@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Attendance, :type => :model do
+RSpec.describe Event, :type => :model do
   describe '#get_attending_friends' do
     before(:each) do
       @user = create(:user)
@@ -29,7 +29,6 @@ RSpec.describe Attendance, :type => :model do
 
         friendship = create(:friendship, user: @user, friend: attending_friend)
         friendship_two = create(:friendship, user: @user, friend: attending_friend_two)
-
         attendance = create(:attendance, user: attending_friend, event: @event)
         attendance_two = create(:attendance, user: attending_friend_two, event: @event)
 

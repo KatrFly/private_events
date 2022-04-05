@@ -5,6 +5,7 @@ class FriendRequest < ApplicationRecord
   validate :no_friends_yet
 
   def no_friends_yet
-    errors.add(:invitee, "you are already friends") if inviter.friends.include?(invitee) || inviter.friend_request_send?(invitee.id)
+    errors.add(:inviter, "A friend request already exists between these two users") if inviter.friend_request_send?(invitee.id)
+    errors.add(:inviter, "You are already friends") if inviter.friends.include?(invitee)
   end
 end
