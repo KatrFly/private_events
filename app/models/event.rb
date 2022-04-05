@@ -21,13 +21,13 @@ class Event < ApplicationRecord
       name = @attending_friends.first.username
       return "#{name} is attending this party"
     elsif @attending_friends.length == 2
-      name_2 = @attending_friends.first.username
-      name_1 = @attending_friends.second.username
+      name_1 = @attending_friends.first.username
+      name_2 = @attending_friends.second.username
       return "#{name_1} and #{name_2} are attending this party"
-    else 
-      name_2 = @attending_friends.first.username
-      name_1 = @attending_friends.second.username
-      number = @attending_friends.length - 2 
+    else
+      name_1 = @attending_friends.first.username
+      name_2 = @attending_friends.second.username
+      number = @attending_friends.length - 2
       return "#{name_1}, #{name_2} and #{number} friends are attending this party"
     end
   end

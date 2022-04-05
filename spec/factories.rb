@@ -9,22 +9,22 @@ FactoryBot.define do
     "user_#{n}"
   end
 
-  factory (:friend_request) do
+  factory :friend_request do
   end
 
-  factory (:event) do
+  factory :event do
     creator
   end
 
-  factory (:attendance) do
+  factory :attendance do
 
   end
 
-  factory(:friendship) do
+  factory :friendship do
 
   end
 
-  factory(:invitation) do
+  factory :invitation do
     event
     user
   end
