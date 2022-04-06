@@ -40,30 +40,30 @@ RSpec.describe User, :type => :model do
     end
   end
 
-  describe '#friend_request_send?' do
+  describe '#friend_request_exists?' do
     before(:each) do
       @user = create(:user)
       @user_two = create(:user)
     end
 
     it 'returns nil if there are no friend requests in the database' do
-      expect(@user.friend_request_send?(@user_two)).to be_nil
+      expect(@user.friend_request_exists?(@user_two)).to be_nil
     end
 
     it 'returns the request if there is a request from user to user_two' do
       request = create(:friend_request, inviter: @user, invitee: @user_two)
-      expect(@user.friend_request_send?(@user_two.id)).to eq(request)
+      expect(@user.friend_request_exists?(@user_two.id)).to eq(request)
     end
 
     it 'returns the request if there is a request from user_two to user' do
       request = create(:friend_request, inviter: @user_two, invitee: @user)
-      expect(@user_two.friend_request_send?(@user.id)).to eq(request)
+      expect(@user_two.friend_request_exists?(@user.id)).to eq(request)
     end
 
     it 'returns nil if there are friend requests but not including one between user and user_two' do
       @user_three = create(:user)
       request = create(:friend_request, inviter: @user_two, invitee: @user_three)
-      expect(@user_two.friend_request_send?(@user.id)).to be_nil
+      expect(@user_two.friend_request_exists?(@user.id)).to be_nil
     end
   end
 

@@ -25,7 +25,7 @@ class User < ApplicationRecord
     @friends = @friendships.map { |f| f.friend == self ? f.user : f.friend }
   end
 
-  def friend_request_send?(user_id)
+  def friend_request_exists?(user_id)
     @requests = FriendRequest.all
 
     return nil if @requests.empty?

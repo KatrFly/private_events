@@ -14,8 +14,8 @@
   <h1>Find more friends</h1>
   <% @users.each do |user| %>
     <% unless user == current_user || current_user.friends.include?(user) %>
-      <%= link_to user.username, user_path(user) %> 
-        <% if request = current_user.friend_request_send?(user.id) %>
+      <%= link_to user.username, user_path(user) %>
+        <% if request = current_user.friend_request_exists?(user.id) %>
 
           <% if current_user.sent_friend_requests.include?(request) %>
             <%= button_to "Withdraw request", request, method: :delete %>
@@ -23,10 +23,10 @@
             <%= button_to "Accept request", friendships_path(friend_request: request), method: :post %>
             <%= button_to 'Decline request', friend_request_path(request), method: :delete %>
           <% end %>
-          
+
        <% else %>
         <%= button_to "Send a request", friend_requests_path(invitee_id: user.id), method: :post %>
        <% end %>
     <% end %><br>
-  <% end %> 
+  <% end %>
 </div>
