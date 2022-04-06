@@ -17,7 +17,8 @@ FactoryBot.define do
   end
 
   factory :attendance do
-
+    event
+    user
   end
 
   factory :friendship do

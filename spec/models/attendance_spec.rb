@@ -53,4 +53,19 @@ RSpec.describe Attendance, :type => :model do
       end
     end
   end
+
+  describe '#must_be_unique' do
+    it 'goes trough if the attendance is unique' do
+      attendance = build(:attendance)
+
+      expect(attendance).to be_valid
+    end
+
+    it 'returns an error if the attendance already exists' do
+      attendance = create(:attendance)
+      identical_attendance = build(:attendance, user: attendance.user, event: attendance.event)
+
+      expect(attendance).not_to be_valid
+    end
+  end
 end
