@@ -42,9 +42,9 @@
       <div class="date logistics"><%= event.date %></div>
       <div class="creator">Organised by <%= link_to event.creator.username, user_path(event.creator) %></div>
       <% if user_signed_in? %>
-      <div class="friends-attending">
-        Leni, Emma and 5 other friends are attending this event
-      </div>
+       <div class="friends-attending">
+          <%= event.get_attending_friends(current_user)%>
+        </div>
       <div class="event-controls">
         <%= button_to 'Attend this event', attendances_path(:event_id => event.id), method: :post %>
         <% if event.creator_id == current_user.id %>
