@@ -12,14 +12,11 @@ const eventChannel = consumer.subscriptions.create("EventChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    const eventDisplay = document.querySelector('#new-events')
-    eventDisplay.insertAdjacentHTML('beforeend', this.template(data))
-    console.log(data)
+    const eventDisplay = document.querySelector('#id')
+    eventDisplay.insertAdjacentHTML('afterbegin', this.template(data))
   },
 
   template(data) {
-    return `<div class="new-event">
-              <p>New event created by ${data.creator.username}: ${data.name}</p>
-            </div>`
+    return `<p>New event created by ${data.creator.username}: ${data.name}. Refresh the page to see all new events.</p>`
   }
 });

@@ -9,5 +9,7 @@ class EventChannel < ApplicationCable::Channel
   end
 
   def receive(data)
+    data['user'] = current_user
+    ActionCable.server.broadcast('event', data)
   end
 end
