@@ -1,6 +1,10 @@
 <div class="future events-block">
   <h1>Upcoming Events</h1>
 
+  <div id="new-events">
+    <p>This is that block</p>
+  </div>
+
   <% @events.future.each do |event| %>
     <div class="one-event">
       <div class="name"><%= link_to event.name, event_path(event) %></div>

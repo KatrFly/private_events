@@ -44,6 +44,8 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+
+    ActionCable.server.broadcast('event', @event.as_json(include: :creator))
   end
 
   # PATCH/PUT /events/1 or /events/1.json
