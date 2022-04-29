@@ -1,14 +1,16 @@
 <div class="main-field">
   <h1>Your friends</h1>
 
-  <% if @friendships.empty? %>
-    <p>You don't have any friends yet, send out some requests! </p>
-  <% else %>
-    <% @friendships.each do |fs| %>
-      <%= link_to fs.get_the_users_friend(current_user).username, user_path(fs.get_the_users_friend(current_user)) %>
-      <%= button_to "End friendship", friendship_path(fs), method: :delete %>
+  <div class="friendships">
+    <% if @friendships.empty? %>
+      <p>You don't have any friends yet, send out some requests! </p>
+    <% else %>
+      <% @friendships.each do |fs| %>
+        <%= link_to fs.get_the_users_friend(current_user).username, user_path(fs.get_the_users_friend(current_user)) %>
+        <%= button_to "End friendship", friendship_path(fs), method: :delete %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
 
   <h1>Find more friends</h1>
