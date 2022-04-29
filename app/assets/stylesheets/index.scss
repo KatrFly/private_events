@@ -8,11 +8,6 @@
   }
 }
 
-#new-event {
-  border: lightgray solid 1px;
-  border-radius: 5px;
-}
-
 .one-event {
   border: lightgray solid 1px;
   border-radius: 5px;
@@ -46,5 +41,9 @@
   flex-direction: column;
   grid-row: 1 / -1;
   grid-column: 4 / 5;
+}
+
+button {
+  width: fit-content;
 }
 
