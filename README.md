@@ -6,8 +6,8 @@ Private events is a rails website where users can log in and create events. Thes
 
 The website is designed to be displayed on a laptop or desktop screen. It will be upgraded to a more mobile responsive design in the near future.
 
-Try out the website functionalities by logging in:
-    email: test@user.com, password: TestUser
+Try out the website functionalities by logging in:\
+    email: test@user.com, password: TestUser\
     email: test2@user.com, password: Test2User
 
 Live link: https://obscure-wildwood-41877.herokuapp.com/
