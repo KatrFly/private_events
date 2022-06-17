@@ -1,3 +1,7 @@
+.main-field {
+  width: 70%;
+}
+
 a {
   text-decoration: none;
 }
@@ -12,8 +16,6 @@ a {
 }
 
 .nav-header {
-  display: flex;
-  flex-direction: row;
   margin-left: auto;
 
   > a, div > a {
@@ -24,6 +26,11 @@ a {
       color: rgb(124, 124, 124);
     }
   }
+}
+
+.dropdown-content-menu {
+  display: flex;
+  flex-direction: row;
 }
 
 .page-body {
@@ -77,5 +84,96 @@ h1 {
 
 .friendships {
   margin-bottom: 30px;
+}
+
+.menu-button {
+  display: none;
+}
+
+.other-side-bar {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .menu-button {
+    display: block;
+    font-size: 1rem;
+    padding-bottom: 10px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .dropdown-content-menu {
+    display: none;
+    position: absolute;
+    max-width: 140px;
+    box-shadow: 0px 8px 26px 0px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    left: auto;
+    right: 0;
+    padding: 0 0 0 20px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  .nav-header {
+    &:hover .dropdown-content-menu {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .menu-link {
+    margin: 10px;
+  }
+
+  .dropdown-content {
+    display: block;
+    position: relative;
+    background-color: #ffffff;
+
+    > a {
+      padding: 0;
+    }
+  }
+
+  .devise-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-body {
+    flex-direction: column-reverse;
+  }
+
+  .side-bar {
+    padding: 0 0 30px 0;
+    border: none;
+
+    > ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 90vw;
+
+      > li {
+        margin: 0 4px;
+      }
+    }
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .main-field {
+    width: 90vw;
+  }
 }
 

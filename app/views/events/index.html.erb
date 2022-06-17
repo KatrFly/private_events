@@ -7,6 +7,7 @@
       <div class="logistics"><%= event.place %></div>
       <div class="logistics"><%= event.date %></div>
       <div class="creator">Organised by <%= link_to event.creator.username, user_path(event.creator) %></div>
+      <div class="description"><%= event.description %></div>
       <% if user_signed_in? %>
         <div class="friends-attending">
           <%= event.get_attending_friends(current_user)%>
@@ -23,14 +24,9 @@
           <% end %>
         </div>
       <% end %>
-      <div class="description"><%= event.description %></div>
     </div>
   <% end %>
 </div>
-
-<br>
-<br>
-<br>
 
 <div class="past events-block">
   <h1>Past Events</h1>
@@ -41,6 +37,7 @@
       <div class="place logistics"><%= event.place %></div>
       <div class="date logistics"><%= event.date %></div>
       <div class="creator">Organised by <%= link_to event.creator.username, user_path(event.creator) %></div>
+      <div class="description"><%= event.description %></div>
       <% if user_signed_in? %>
        <div class="friends-attending">
           <%= event.get_attending_friends(current_user)%>
@@ -53,7 +50,6 @@
         <% end %>
       </div>
       <% end %>
-      <div class="description"><%= event.description %></div>
     </div>
   <% end %>
 </div>

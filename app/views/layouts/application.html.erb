@@ -15,32 +15,34 @@
       <div class="logo">
         <%= link_to "Private Events", root_path %>
       </div>
-        <nav class="nav-header">
-            <%= link_to "Home", root_path %>
+      <nav class="nav-header">
+        <div class="menu-button">Menu</div>
+        <div class="dropdown-content-menu">
+          <%= link_to "Home", root_path, class: "menu-link" %>
           <% if user_signed_in? %>
-            <%= link_to "Friends", friendships_path %>
+            <%= link_to "Friends", friendships_path, class: "menu-link" %>
           <% end %>
           <div class="devise-links">
             <% if user_signed_in? %>
-                <div class="dropdown">
-                  <%= link_to current_user.username, edit_user_registration_path %>
-                  <div class="dropdown-content">
-                    <%= link_to "Profile", user_path(current_user) %>
-                    <%= link_to "Edit", edit_user_registration_path %>
-                    <%= link_to "Sign off", user_registration_path, method: :delete %>
-                  </div>
+              <div class="dropdown">
+                <%= link_to current_user.username, edit_user_registration_path, class: "menu-link" %>
+                <div class="dropdown-content">
+                  <%= link_to "Profile", user_path(current_user), class: "menu-link" %>
+                  <%= link_to "Edit", edit_user_registration_path, class: "menu-link"  %>
+                  <%= link_to "Sign off", user_registration_path, method: :delete, class: "menu-link"  %>
                 </div>
-                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-              <% else %>
-              <%= link_to "Log in", new_user_session_path %>
-              <%= link_to "Sign up", new_user_registration_path %>
+              </div>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "menu-link" %>
+            <% else %>
+              <%= link_to "Log in", new_user_session_path, class: "menu-link"  %>
+              <%= link_to "Sign up", new_user_registration_path, class: "menu-link" %>
             <% end %>
           </div>
-        </nav>
+        </div>
+      </nav>
     </div>
 
     <div class="page-body">
-
       <div class="main-field">
         <p id="notice"><%= notice %></p>
         <p id="alert"><%= alert %></p>
@@ -49,7 +51,7 @@
 
       <nav class="side-bar">
         <% if user_signed_in? %>
-          <ul>
+          <ul class="side-bar-list">
             <li><%= link_to 'New Event', new_event_path %></li>
             <li><%= link_to 'Created events', events_created_path %></li>
             <li><%= link_to 'Attending events', events_attending_path %></li>
