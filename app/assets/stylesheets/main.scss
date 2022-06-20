@@ -41,11 +41,12 @@ a {
 .side-bar {
   border: lightgray solid 1px;
   width: 15%;
-  padding-left: 20px;
+  padding: 0 20px;
 
   > ul > li {
     list-style-type: none;
     margin: 10px 0;
+    font-size: 0.9rem;
   }
 }
 
