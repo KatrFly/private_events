@@ -1,25 +1,14 @@
 <%= form_with(model: invitation) do |form| %>
-  <% if invitation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
-
-      <ul>
-        <% invitation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <%= form.hidden_field :event_id, value: @event.id %>
 
   <div class="field">
     <% current_user.friends.each do |friend| %>
-      <%= check_box_tag "invitation[invited_users_ids][]", friend.id, @event.invited_guests.include?(friend.id) %>
+      <%= check_box_tag "invitation[invited_users_ids][]", friend.id, @event.invited_guests.include?(friend) %>
       <%= label_tag(:invited_persons, "#{friend.username}") %>
     <% end %>
   </div>
- 
+
   <div class="actions">
     <%= form.submit %>
   </div>

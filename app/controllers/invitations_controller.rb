@@ -12,20 +12,23 @@ class InvitationsController < ApplicationController
 
   def create
     @event = Event.find(invitation_params[:event_id])
+    succes = true
 
     invitation_params[:invited_users_ids].each do |user_id|
-      Invitation.create(user_id: user_id.to_i, event_id: @event.id)
+      if !Invitation.find_or_create_by(user_id: user_id.to_i, event_id: @event.id)
+        succes = false
+      end
     end
 
-    # respond_to do |format|
-    #   if @invitation.save
-    #     format.html { redirect_to event_url(@event), notice: "Invitation was successfully created." }
-    #     format.json { render :show, status: :created, location: @event }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @invitation.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if succes == true
+        format.html { redirect_to event_url(@event), notice: "Invitations were successfully created." }
+        format.json { render :show, status: :created }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

@@ -20,7 +20,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
 
-     respond_to do |format|
+    respond_to do |format|
       format.html { redirect_to friendships_url, notice: "Friendship was successfully ended." }
       format.json { head :no_content }
     end
