@@ -27,8 +27,12 @@
   <%= @event.description %>
 </p>
 
-<% if @event.public_event? || (@event.only_friends? && @event.creator.friends.include?(current_user)) %>
-  <%= button_to 'Attend this event', attendances_path(:event_id => @event.id), method: :post %>
+<% if @event.public_event? || (@event.only_friends? && @event.creator.friends.include?(current_user)) %>>
+  <% if attendance = current_user.already_attending?(@event) %>
+      <%= button_to 'Unattend this event', attendance_path(attendance), method: :delete %>
+    <% else %>
+      <%= button_to 'Attend this event', attendances_path(:event_id => @event.id), method: :post %>
+    <% end %>
 <% elsif @event.only_invited? && i = current_user.find_invitation(@event) %>
   <% if i.open?%>
     <%= button_to "Accept invitation", invitation_path(i, invitation: { invitation_status: 'accepted' }), method: :patch %>

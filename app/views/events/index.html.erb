@@ -43,7 +43,11 @@
           <%= event.get_attending_friends(current_user)%>
         </div>
       <div class="event-controls">
-        <%= button_to 'Attend this event', attendances_path(:event_id => event.id), method: :post %>
+         <% if attendance = current_user.already_attending?(event) %>
+            <%= button_to 'Unattend this event', attendance_path(attendance), method: :delete %>
+          <% else %>
+            <%= button_to 'Attend this event', attendances_path(:event_id => event.id), method: :post %>
+          <% end %>
         <% if event.creator_id == current_user.id %>
           <button type="button"><%= link_to "Edit", edit_event_path(event) %></button>
           <%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
