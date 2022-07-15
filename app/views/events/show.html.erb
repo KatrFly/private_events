@@ -1,59 +1,60 @@
 <h1><%= @event.name %></h1>
 
-<p class="logistics">
+<div class="logistics">
   <strong>Place</strong><br>
-  <%= @event.place %>
-</p>
+  <p><%= @event.place %></p>
+</div>
 
-<p class="logistics">
+<div class="logistics">
   <strong>Date</strong><br>
-  <%= @event.date %>
-</p>
+  <p><%= @event.date %></p>
+</div>
 
-<p class="logistics">
+<div class="logistics">
   <strong>Organised by</strong><br>
-  <%= link_to @event.creator.username, user_path(@event.creator) %>
-</p>
+  <p><%= link_to @event.creator.username, user_path(@event.creator) %></p>
+</div>
 
-<p class="logistics">
+<div class="logistics">
   <strong>Attendees</strong><br>
   <% @event.attendees.each do |attendee| %>
-    <%= link_to attendee.username, user_path(attendee) %><br>
+    <p><%= link_to attendee.username, user_path(attendee) %><br></p>
   <% end %>
-</p>
+</div>
 
-<p class="logistics">
-  <strong>Description</strong>
-  <%= @event.description %>
-</p>
+<div class="logistics">
+  <strong>Description</strong><br>
+  <p><%= @event.description %></p>
+</div>
 
 <% if @event.public_event? || (@event.only_friends? && @event.creator.friends.include?(current_user)) %>>
   <% if attendance = current_user.already_attending?(@event) %>
-      <%= button_to 'Unattend this event', attendance_path(attendance), method: :delete %>
+      <button><%= button_to 'Unattend this event', attendance_path(attendance), method: :delete %></button>
     <% else %>
       <%= button_to 'Attend this event', attendances_path(:event_id => @event.id), method: :post %>
     <% end %>
 <% elsif @event.only_invited? && i = current_user.find_invitation(@event) %>
   <% if i.open?%>
-    <%= button_to "Accept invitation", invitation_path(i, invitation: { invitation_status: 'accepted' }), method: :patch %>
-    <%= button_to "Decline invitation", invitation_path(i, invitation: { invitation_status: 'declined' }), method: :patch %>
+    <button><%= button_to "Accept invitation", invitation_path(i, invitation: { invitation_status: 'accepted' }), method: :patch %></button>
+    <button><%= button_to "Decline invitation", invitation_path(i, invitation: { invitation_status: 'declined' }), method: :patch %></button>
     <% elsif i.declined? %>
       <p>You have declined this invitation. Change your mind?</p>
-      <%= button_to "Accept invitation", invitation_path(i, invitation: { invitation_status: 'accepted' }), method: :patch %>
+      <button><%= button_to "Accept invitation", invitation_path(i, invitation: { invitation_status: 'accepted' }), method: :patch %></button>
     <% elsif i.accepted? %>
       <p>You have accepted this invitation. Change your mind?</p>
-      <%= button_to "Decline invitation", invitation_path(i, invitation: { invitation_status: 'declined' }), method: :patch %>
+      <button><%= button_to "Decline invitation", invitation_path(i, invitation: { invitation_status: 'declined' }), method: :patch %></button>
   <% end %>
 <% end %>
 
 
+<nav class="show-page-bottom">
+  <% if @event.creator == current_user && @event.only_invited? %>
+    <%= link_to 'Invite people',  new_invitation_path(event_id: @event) %>
+  <% end %>
 
-<% if @event.creator == current_user && @event.only_invited? %>
-  <%= link_to 'Invite people',  new_invitation_path(event_id: @event) %>
-<% end %>
+  <% if @event.creator == current_user %>
+    <%= link_to 'Edit', edit_event_path(@event) %>
+  <% end %>
 
-<% if @event.creator == current_user %>
-  <%= link_to 'Edit', edit_event_path(@event) %>
-<% end %>
-
-<%= link_to 'Back', events_path %>
+  <%= link_to 'Back', events_path %>
+</nav>

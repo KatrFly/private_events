@@ -1,5 +1,28 @@
 .logistics {
-  > a {
+  margin: 1rem 0;
+
+  > p {
     margin-left: 10px;
+  }
+}
+
+
+.show-page-bottom {
+  a {
+    background-color: #bfbfbf;
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: #bfbfbf9f;
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  h1 {
+    margin: 1rem 0 !important;
   }
 }
